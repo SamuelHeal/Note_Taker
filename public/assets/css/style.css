@@ -1,11 +1,71 @@
+:root {
+  --nav: #537e54;
+  --textHeadings: rgba(58, 57, 57, 0.911);
+}
+
+/* Default font class */
+#font {
+  font-family: sans-serif;
+  font-style: normal;
+  color: var(--textHeadings);
+}
+
+.bg-color {
+  background-color: var(--nav);
+}
+
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
+.nav-text{
+  font-size: 40px;
+  color: rgb(46, 46, 46);
+}
+
+.nav-text:hover{
+  text-decoration: none;
+  transform: scale(1.1);
+  color: rgb(167, 164, 164);
+}
+
+
 .save-note {
   display: none;
+  color: rgb(46, 46, 46);
+  border-radius: 10px;
+}
+
+.save-note:hover {
+  color: rgb(165, 161, 161);
+  transform: scale(1.4);
+}
+
+.new-note,
+.home {
+  color: rgb(46, 46, 46);
+  opacity: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.new-note:hover {
+  transform: scale(1.4);
+  color: rgb(165, 161, 161)
+}
+
+.delete-note {
+  color: var(--textHeadings);
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.delete-note:hover {
+  transform: scale(1.4);
+  color: rgb(165, 161, 161)
 }
 
 .icons i {
@@ -16,7 +76,7 @@ html, body {
 }
 
 .note-textarea, .note-title {
-  color: #000000;
+  color: #706f6f;
   width: 100%;
   outline: none;
   border: none;
@@ -32,10 +92,6 @@ html, body {
   height: 50px;
   margin-top: 13px;
   font-size: 3rem;
-}
-
-.note-title:read-only, .note-textarea:read-only {
-  color: #757575;
 }
 
 .list-container .card {
@@ -55,6 +111,7 @@ html, body {
   border-top: none;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
+  border-radius: none;
 }
 
 .list-container i {
@@ -68,3 +125,5 @@ html, body {
   padding: 20px;
   cursor: pointer;
 }
+
+
