@@ -17,6 +17,7 @@ module.exports = (app) => {
     });
     
     let storedNotes = [];
+
     app.post('/api/notes', (req, res) => {
         let noteText = req.body;
         storedNotes.push(noteText);
@@ -33,19 +34,15 @@ module.exports = (app) => {
     });
     
     app.delete('/api/notes/:id', (req, res) => {
-        let { id } = req.params;
-        storedNotes.forEach(function(note){
-            if (note.id === id) {
-                let changeArr = storedNotes.filter(notes => {
-                    return notes.id !== id;
-                })
-                storedNotes = changeArr;
-                fs.writeFile('db/db.json', JSON.stringify(storedNotes), (err) => {
-                    err ? console.error(err) : console.log(`Note with ID of ${id} deleted successfully`)
-                })
-                res.send(id);
-            }
+        let {id} = req.params
+        let currentNotes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
+        currentNotes.splice(id-1, 1)
+        storedNotes.splice(id-1, 1)
+        let newNotes = currentNotes;
+        fs.writeFile('db/db.json', JSON.stringify(newNotes), (err) => {
+            err ? console.error(err) : console.log(`Note deleted!`)
         })
+        res.json(newNotes)
     })
 }
     
