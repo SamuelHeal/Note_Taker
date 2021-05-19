@@ -1,16 +1,20 @@
 const path = require('path');
 const fs = require('fs');
 
+// Exporting all the below code
 module.exports = (app) => {
     
+    // Getting the index.html file
     app.get('/', (req, res) => {
         res.sendFile(path.join(__dirname, '../public/index.html'))
     });
     
+    // Getting the notes.html file
     app.get('/notes', (req, res) => {
         res.sendFile(path.join(__dirname, '../public/notes.html'));
     });
     
+    // Getting the db.json file
     app.get("/api/notes", (req, res) => {
         let notes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
         res.json(notes);
@@ -18,6 +22,7 @@ module.exports = (app) => {
     
     let storedNotes = [];
 
+    // Function to save notes
     app.post('/api/notes', (req, res) => {
         let noteText = req.body;
         storedNotes.push(noteText);
@@ -33,6 +38,7 @@ module.exports = (app) => {
         })
     });
     
+    // Function to delete notes
     app.delete('/api/notes/:id', (req, res) => {
         let {id} = req.params
         let currentNotes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
